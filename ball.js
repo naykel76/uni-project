@@ -15,8 +15,8 @@ class Ball {
 
   // main object
   display() {
-		this.col = color(this.colR,this.colG,this.colB, this.colA);
-		strokeWeight(0)
+    this.col = color(this.colR, this.colG, this.colB, this.colA);
+    strokeWeight(0)
     fill(this.col);
     ellipse(this.x, this.y, this.dia);
   }
@@ -34,28 +34,27 @@ class Ball {
   }
 
   /*balls dropping at various speeds*/
-	display1(){
-		this.col = color(this.colR,this.colG,this.colB, this.colA);
-		this.colR = map(this.pos.x, 0, canvW, 0, 255);
-		strokeWeight(0)
+  display1() {
+    this.col = color(this.colR, this.colG, this.colB, this.colA);
+    this.colR = map(this.pos.x, 0, canvW, 0, 255);
+    strokeWeight(0)
     fill(this.col);
-		ellipse(this.pos.x, this.pos.y, this.dia, this.dia);
-	}
+    ellipse(this.pos.x, this.pos.y, this.dia, this.dia);
+  }
 
-	/*speed and movement controls - DO NOT alter this is just the algorithm for
-	controls. Control speeds by changing the pos and vel vector values.*/
-	move1() {
-		this.pos.add(this.vel);
-		this.vel.add(this.acc);
-	}
-	
-	/*die() is the trigger to remove object from the array the conditions are met
-	when transparency reaches 0 or y is greaterthat the screen height*/
-	die() {
-		this.colA = this.colA - random(0.001, 2); // fade at random speeds
-		if (this.colA < 5 || this.y > height){
-			return true;
-		}
-	}
+  /*speed and movement controls - DO NOT alter this is just the algorithm for
+  controls. Control speeds by changing the pos and vel vector values.*/
+  move1() {
+    this.pos.add(this.vel);
+    this.vel.add(this.acc);
+  }
+
+  /*die() is the trigger to remove object from the array the conditions are met
+  when transparency reaches 0 or y is greaterthat the screen height*/
+  die() {
+    this.colA = this.colA - random(0.001, 2); // fade at random speeds
+    if (this.colA < 5 || this.y > height) {
+      return true;
+    }
+  }
 }
-

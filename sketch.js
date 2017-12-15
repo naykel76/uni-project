@@ -1,8 +1,9 @@
 var balls = []; // empty balls array for objects
-var img 	= []; // empty array for images
+var img = []; // empty array for images
 var imgArray = ['images/smiley-hero-blue.png',
-								'images/smiley-hero-green.png',
-								'images/smiley-hero-orange.png'];
+  'images/smiley-hero-green.png',
+  'images/smiley-hero-orange.png'
+];
 
 /*image variables*/
 var imgPosX;
@@ -21,72 +22,72 @@ canvH = 600; // canvas height
 var vert = false; // balls direction
 
 function preload() {
-	imgR = loadImage('images/robocop-red.png');
-	imgG = loadImage('images/robocop-green.png');
-	imgCannon = loadImage('images/cannon.png');
-	imgCannonF = loadImage('images/cannon-fire.png');
-	imgShP = loadImage('images/cool-superhero-purple.png');
-	imgShW = loadImage('images/cool-superhero-white.png');
+  imgR = loadImage('images/robocop-red.png');
+  imgG = loadImage('images/robocop-green.png');
+  imgCannon = loadImage('images/cannon.png');
+  imgCannonF = loadImage('images/cannon-fire.png');
+  imgShP = loadImage('images/cool-superhero-purple.png');
+  imgShW = loadImage('images/cool-superhero-white.png');
 }
 
 function setup() {
   createCanvas(canvW, canvH);
   // load images into array
-  for (i = 0; i < imgArray.length; i++){
-		img[i] = loadImage(imgArray[i]);
-	}
+  for (i = 0; i < imgArray.length; i++) {
+    img[i] = loadImage(imgArray[i]);
+  }
 }
 
 function draw() {
-	background(51);
-	strokeWeight(1)
-	stroke(0);
-	addBalls(); // objects
+  background(51);
+  strokeWeight(1)
+  stroke(0);
+  addBalls(); // objects
   myNotes(); // notes
-  cannon();	// cannon fire
-	smileyMan(); // image changer
-	heroMan(); // change ball direction
-	roboMan(); // image slider
+  cannon(); // cannon fire
+  smileyMan(); // image changer
+  heroMan(); // change ball direction
+  roboMan(); // image slider
 }
 
 
 
 function addBalls() {
-  if (balls.length < 50){ // add balls to the array when below value
+  if (balls.length < 50) { // add balls to the array when below value
     let x = random(width);
     let y = random(hHigh, hLow);
     let dia = random(30, 90);
     B = new Ball(x, y, dia); // create new object
     balls.push(B); // push object to the array
-		
-		image(imgCannonF,5,height-90) // fire the cannon each time a ball is created
+
+    image(imgCannonF, 5, height - 90) // fire the cannon each time a ball is created
   }
 
-	// // once the new Ball is created perform object actions
+  // // once the new Ball is created perform object actions
   for (let i = 0; i < balls.length; i++) {
-    
-  	// change direction aand movement of objects
-    if (vert){
-			balls[i].display1();
-			balls[i].move1();
-		} else {
-			balls[i].display();
-			balls[i].move();
-		}
+
+    // change direction aand movement of objects
+    if (vert) {
+      balls[i].display1();
+      balls[i].move1();
+    } else {
+      balls[i].display();
+      balls[i].move();
+    }
 
 
-    if (balls[i].die()){ 
-			balls.splice(i,1); // if transparency drops to 0 remove from array
+    if (balls[i].die()) {
+      balls.splice(i, 1); // if transparency drops to 0 remove from array
     }
   }
 }
 
-function cannon(){
-	/*add a bit of glamor when creating new balls*/
-	if (mouseIsPressed) {
-		image(imgCannonF,5,height-90)
-	}
-	image(imgCannon,5,height-90)
+function cannon() {
+  /*add a bit of glamor when creating new balls*/
+  if (mouseIsPressed) {
+    image(imgCannonF, 5, height - 90)
+  }
+  image(imgCannon, 5, height - 90)
 }
 
 /*-------------------------------------------------------------------------
@@ -106,19 +107,19 @@ function keyPressed() {
 	mouse functions
 ---------------------------------------------------------------------------*/
 function mouseDragged() {
-	if (mouseX){
-		if (mouseButton == RIGHT) {
-			balls.push(new Ball(mouseX, mouseY, 75));
-		}
-	}
+  if (mouseX) {
+    if (mouseButton == RIGHT) {
+      balls.push(new Ball(mouseX, mouseY, 75));
+    }
+  }
 }
 
 function mousePressed() {
-	if (mouseX){
-		if (mouseButton == LEFT) {
-			balls.push(new Ball(mouseX, mouseY,75)); // add objects to array  
-		} 
-	}
+  if (mouseX) {
+    if (mouseButton == LEFT) {
+      balls.push(new Ball(mouseX, mouseY, 75)); // add objects to array  
+    }
+  }
 }
 
 /*-------------------------------------------------------------------------
@@ -133,7 +134,7 @@ function myNotes() {
   noStroke(0);
 
   var txtArray = [
-		"- Move the mouse left and right over Roboman for slider",
+    "- Move the mouse left and right over Roboman for slider",
     "- Hover over Smileyman to change colour",
     "- Click on Smileyman to change colour again",
     "- Click on HeroMan to change the direction of the balls",
